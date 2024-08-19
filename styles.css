@@ -24,59 +24,59 @@ main {
     align-items: stretch;
     height: 400px;
     width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .card {
-    flex: 1 0 auto;
-    min-width: 0;
+    flex: 0 0 auto;
     height: 100%;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    background-color: #f0f0f0;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    margin-left: -50px;
+    display: flex;
 }
 
-.card:first-child {
-    margin-left: 0;
-    flex-grow: 1.5;
-}
-
-.card:nth-child(1) { background-color: #FFD700; }
-.card:nth-child(2) { background-color: #FF8C00; }
-.card:nth-child(3) { background-color: #FF6347; }
-.card:nth-child(4) { background-color: #98FB98; }
-.card:nth-child(5) { background-color: #ADD8E6; }
-
-.card:hover {
-    flex-grow: 1.5;
-}
-
-.card img {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-    object-position: left;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.card-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: rgb(255, 255, 255);
-    color: black;
-    padding: 10px;
+.card-label {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    height: auto;
-    max-height: 150px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    font-weight: bold;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Fixed width for label */
+    flex-shrink: 0; /* Prevent label from shrinking */
+    z-index: 2; /* Ensure label is above the image */
 }
+
+.card-content {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-content img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:first-child .card-content img {
+    opacity: 1;
+}
+
+.card:hover .card-content img {
+    opacity: 1;
+}
+
+.card:nth-child(1) .card-label { background-color: #FFD700; }
+.card:nth-child(2) .card-label { background-color: #FF8C00; }
+.card:nth-child(3) .card-label { background-color: #FF6347; }
+.card:nth-child(4) .card-label { background-color: #98FB98; }
